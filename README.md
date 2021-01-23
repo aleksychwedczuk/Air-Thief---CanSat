@@ -26,6 +26,26 @@ There are many opportunities for patenting ideas, meaning this is definitely an 
 
 # CanSat description
 
+The main core of the satellite is designed using Fusion 360. We decided to collaborate with Cubic Inch to use their expertise and technologically advanced tools to print our core of the satellite. The company uses the Multi Jet Fusion technology provided by HP. The materials used by such a printer is the Polyamide PA12 which is a strong and durable material, therefore our satellite and its components will be protected when it falls to the ground after the fall.
+
+The general mission of any cansat is to measure the temperature and pressure at a given altitude. We will use an Adafruit temperature and pressure sensor and connected to a Raspberry PI Zero micro-controller, so that it can be measured. From that point onwards, the data will be transmitted via a signal to a ground station. 
+
+The core of our secondary mission - the mission dedicated only to the Air Thief - will be the NW Air Pump which will be used to push air from a high altitude through a filter. We will use 3 lithium-ion 750 mAh battery and the voltage will be stepped down for the other components. To turn on the pump, a relay will be used for safety in case of a short in the motor.
+
+# Hardware Resources
+ 
+
+## 3D Models
+
+The following files are uploaded in the 3D folder:
+
+# Electrical design
+
+Our CanSat is made up of a couple specific components, each has its one role in the mission. The components chosen here are finalized by the Critical Design Review. The main controller board is the brain of the operation; it is used for measuring the primary and controlling the secondary mission. The processor used will be a Feather M0 module that involves an ARM Cortex M0 microcontroller known from Arduino Zero with an integrated radio module (LoRa) for communication purposes.
+The core of our primary mission will be an MPL temperature and pressure sensor, which will record the data every second to give us an accurate depiction of the altitude of the CanSat. This will be calculated using the hypsometric formula, more information in section 7.1: Test Campaign: Primary mission tests. This sensor suits our mission well because of its high level of accuracy. The core of our secondary mission will be the NW Air Pump which will be used to push air from a high altitude through a series of filters. This air pump after testing showed that the amount of air that it can pump is sufficient for finding small organisms and bacteria. Furthermore, the power converter that was initially used for powering the pump was not strong enough and it needed to be changed for a one that could supply more power. To power the NW Air Pump with 6V and 400 mA current a step-down converter (D24V10F6) will be used to change the battery voltage of 11.1 V, also a second step down converter (D24V22F5) will be used to power the main controller with 5V and 700 mA.  The converter powering the pump was changed after testing due to the current limit being reached (500mA) and the motor not reaching its highest power possible. To power the CanSat three Li-Ion 750 mAh batteries are used and the voltage is stepped down for the other components. To turn on the pump a relay is used for safety in case of a short in the motor the motherboard will not be damaged. It is particularly important for our secondary mission that the CanSat will be found due to the physical sample that we need to analyze in a lab; therefore, a GPS module is used to determine the coordinates of the CanSat, and these will be sent to the ground station. To help with finding the CanSat after landing an 80dB buzzer is used, if the CanSat is hard to find visibly it can be also found using sound.
+
+![CanSat Mappedout](https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/cansatmappedout2.png)
+
 # How to program the Air Thief
 
 The primary onboard computing unit for our CanSat is an Adafruit M0 that supports Arduino. It is going to run all the programs necessary for the functioning of the CanSat and all onboard equipment and experiments. The flight plan for individual atmospheric Microbiome soundings can be fine-tuned, which is helpful. The data will be recorded to a MicroSD card, which will probably have such high storage capacity that it will be virtually infinite for our purposes (16 GB, around 30 zloty).
@@ -38,15 +58,6 @@ The program has 3 main modes, controlled based on the current altitude measured 
  ### Active – When the satellite is in flight, above 100 meters AGL, it constantly calculates its position and AGL via the GPS and AdaFruit sensors. [This means sampling occurs at 500 millis intervals.] These parameters are then transmitted to the ground station, so that a flight profile can be determined. If the altitude were to increase or decrease, Sampling or Standby modes would be engaged, respectively.
  ### Sampling – The pump powering the secondary experiment is enabled. It runs constantly until either the total runtime requirement is satisfied (so as not to overshoot) or until the CanSat goes below 80% of the mission altitude (2 km for a 2.5 km mission, for instance, this is configured pre-launch). That way the sample is collected from the correct experimental band that was being sampled (for instance one that has a height of 0.5 km). During Sampling, the Active activities are also conducted. If the sampling altitude is passed and the CanSat begins heading down again, Active, and then finally Standby modes are engaged. When Sampling mode is entered for the first time [since last boot], a system-wide flag is set that is later used to determine whether the Buzzer should be turned on while in Standby.
 The data recorded via the MicroSD card, and the outgoing transmissions sent out via radio will have a specific format that will minimize their size, enabling higher efficiency. [This means that the timestamps used for instance are going to be epoch time that can be later converted into human-readable time values, not in situ in the POCU but in the gstat after receiving it.] The ground station program will be coded in JS for the frontend, and in Python3 for the backend.
-
-# Hardware Resources
-
-## Electrical design
-
-Our CanSat is made up of a couple specific components, each has its one role in the mission. The components chosen here are finalized by the Critical Design Review. The main controller board is the brain of the operation; it is used for measuring the primary and controlling the secondary mission. The processor used will be a Feather M0 module that involves an ARM Cortex M0 microcontroller known from Arduino Zero with an integrated radio module (LoRa) for communication purposes.
-The core of our primary mission will be an MPL temperature and pressure sensor, which will record the data every second to give us an accurate depiction of the altitude of the CanSat. This will be calculated using the hypsometric formula, more information in section 7.1: Test Campaign: Primary mission tests. This sensor suits our mission well because of its high level of accuracy. The core of our secondary mission will be the NW Air Pump which will be used to push air from a high altitude through a series of filters. This air pump after testing showed that the amount of air that it can pump is sufficient for finding small organisms and bacteria. Furthermore, the power converter that was initially used for powering the pump was not strong enough and it needed to be changed for a one that could supply more power. To power the NW Air Pump with 6V and 400 mA current a step-down converter (D24V10F6) will be used to change the battery voltage of 11.1 V, also a second step down converter (D24V22F5) will be used to power the main controller with 5V and 700 mA.  The converter powering the pump was changed after testing due to the current limit being reached (500mA) and the motor not reaching its highest power possible. To power the CanSat three Li-Ion 750 mAh batteries are used and the voltage is stepped down for the other components. To turn on the pump a relay is used for safety in case of a short in the motor the motherboard will not be damaged. It is particularly important for our secondary mission that the CanSat will be found due to the physical sample that we need to analyze in a lab; therefore, a GPS module is used to determine the coordinates of the CanSat, and these will be sent to the ground station. To help with finding the CanSat after landing an 80dB buzzer is used, if the CanSat is hard to find visibly it can be also found using sound.
-
-![CanSat Mappedout](https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/cansatmappedout2.png)
 
 # Ground support equipment
 Changes in CDR: The POCU handles only basic data processing and categorizing. Additionally, there is more data sent out via Radio than is saved to the SD card (since ICAR pings and other health information are only saved on the ground station). The POCU handles only basic data processing, handling & categorizing. Additionally, there is more data sent out via Radio than is saved to the SD card (since the ICAR pings and other health information are only saved on the ground station).
@@ -82,9 +93,4 @@ The ground station is composed of these elements:
 11.	Sars-CoV-2 Quick-Antibody detection kit for testing teammates (pandemic control related if needed).
 12.	Microorganisms instant detection kit (obsolete).
 
- 
 
-
-## 3D Models
-
-The following files are uploaded in the 3D folder:
