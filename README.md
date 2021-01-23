@@ -32,7 +32,7 @@ The general mission of any cansat is to measure the temperature and pressure at 
 
 The core of our secondary mission - the mission dedicated only to the Air Thief - will be the NW Air Pump which will be used to push air from a high altitude through a filter. We will use 3 lithium-ion 750 mAh battery and the voltage will be stepped down for the other components. To turn on the pump, a relay will be used for safety in case of a short in the motor.
 
-# Hardware Resources
+# Hardware Design
  
 
 ## 3D Models
