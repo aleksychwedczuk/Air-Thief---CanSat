@@ -8,14 +8,14 @@ One of our main objectives is to make project an open-source - this means we wa
 
 * [Introduction](#introduction)
 * [CanSat description](#CanSat-description)
-*[Mission Overview](#mission-overview)
+* [Mission Overview](#Mission-overview)
 * [Hardware Design](#hardware-design)
- **[3D Models](#3d-models)
- ** [Bill of Materials](#bill-of-materials)
+ * [3D Models](#3d-models)
+ * [Bill of Materials](#bill-of-materials)
 * [Electrical Design](#electrical-design)
 * [How to code the Air Thief](#how-to-code-the-air-thief)
 *[Ground support equipment](#ground-support-system)
-  ** [License](#license)
+* [License](#license)
 
 # Introduction
 The Air Thief team consists of 5 members from Akademeia High School. We formed a team as we believed the CanSat competition is a one-time experience that will allow us to polish our skills as well as gain newfound skills from the process. We came up with the idea of creating the Air Thief - a satellite that would be able to collect air from an altitude of 2km, which can be later sampled for microbes. Throughout the competition, we have brainstormed how we will achieve this, as well as have gained partners such as Adamed, Cloudferro, JLCPCB, CubicInch and Thorium Space Technology, who see great potential in our work and are willing to support us with their resources.
@@ -23,6 +23,8 @@ The Air Thief team consists of 5 members from Akademeia High School. We formed 
 The medium through which we want to accomplish our mission is the CanSat competition - a competition organized by the European Space Agency with the goal of building a real satellite within the volume of a soft drink can. This competition takes place every year and is held to very high standards as initially, over 80 teams per country participate in the challenge.
 
 There are many opportunities for patenting ideas, meaning this is definitely an area for business. As an example, the recent mission exploring life on Venus, which would require a satellite that would be able to collect microorganisms from the atmosphere.
+
+# CanSat description
 
 # How to program the Air Thief
 
