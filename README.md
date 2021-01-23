@@ -48,8 +48,11 @@ The following files are uploaded in the 3D folder:
 
 The electronics consist of two main systems, the 5V and the 6V. The power is taken from 3 lithium ion(3.7V 750mAh) batteries rigid in series to provide 12.6V when charged and 750mAh of capacity. There are 2 main converters, a 5V and a 6V. The 6V converter powers the air pump that pulls the air through the filters. The 5V converter powers the microcontroller, the buzzer, the led and the GPS, the sensor is powered through the microcontroller with an 3.3 V. The wiring is basic, the power needs to be wired to all components respectively. The wiring between the feather wing board and the components is a bit more complicated. 
 
-![CanSat Mappedout](https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/cansatmappedout2.png)
+The core of our secondary mission will be the NW Air Pump which will be used to push air from a high altitude through a series of filters. To power the NW Air Pump with 6V and 400 mA current a step-down converter (D24V10F6) will be used to change the battery voltage of 11.1 V, also a second step down converter (D24V22F5) will be used to power the main controller with 5V and 700 mA. 
 
+To power the CanSat, three Li-Ion 750 mAh batteries are used and the voltage is stepped down for the other components. To turn on the pump, a relay is used for safety in case of a short in the motor the motherboard will not be damaged. A GPS module is used to determine the coordinates of the CanSat, and these will be sent to the ground station. To help with finding the CanSat after landing an 80dB buzzer is used, if the CanSat is hard to find visibly, it can be also found using sound.
+
+<img src="https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/cansatmappedout2.png" height="450">
 <img src="https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/FLatSat1.png" height="450">
 <img src="https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/FLatSat2.png" height="450">
 <img src="https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/FLatSat3.png" height="450">
