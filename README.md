@@ -14,7 +14,7 @@ One of our main objectives is to make project an open-source - this means we wa
   * [Bill of Materials](#bill-of-materials)
 * [Electrical Design](#electrical-design)
 * [How to code the Air Thief](#how-to-code-the-air-thief)
-*[Ground support equipment](#ground-support-system)
+* [Ground support equipment](#ground-support-system)
 * [License](#license)
 
 # Introduction
