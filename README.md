@@ -26,23 +26,31 @@ There are many opportunities for patenting ideas, meaning this is definitely an 
 
 # CanSat description
 
-The main core of the satellite is designed using Fusion 360. We decided to collaborate with Cubic Inch to use their expertise and technologically advanced tools to print our core of the satellite. The company uses the Multi Jet Fusion technology provided by HP. The materials used by such a printer is the Polyamide PA12 which is a strong and durable material, therefore our satellite and its components will be protected when it falls to the ground after the fall.
-
 The general mission of any cansat is to measure the temperature and pressure at a given altitude. We will use an Adafruit temperature and pressure sensor and connected to a Raspberry PI Zero micro-controller, so that it can be measured. From that point onwards, the data will be transmitted via a signal to a ground station. 
 
 The core of our secondary mission - the mission dedicated only to the Air Thief - will be the NW Air Pump which will be used to push air from a high altitude through a filter. We will use 3 lithium-ion 750 mAh battery and the voltage will be stepped down for the other components. To turn on the pump, a relay will be used for safety in case of a short in the motor.
 
 # Hardware Design
  
+The main core of the satellite is designed using Fusion 360. We decided to collaborate with Cubic Inch to use their expertise and technologically advanced tools to print our core of the satellite. The company uses the Multi Jet Fusion technology provided by HP. The materials used by such a printer is the Polyamide PA12 which is a strong and durable material, therefore our satellite and its components will be protected when it falls to the ground after the fall.
 
+![Flatsat 1](https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/FLatSat1.png)
+
+![Flatsat 2](https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/FLatSat2.png)
+
+![Flatsat 3](https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/FLatSat3.png)
 ## 3D Models
+
+## Bill of Materials
+
+
 
 The following files are uploaded in the 3D folder:
 
 # Electrical design
 
-Our CanSat is made up of a couple specific components, each has its one role in the mission. The components chosen here are finalized by the Critical Design Review. The main controller board is the brain of the operation; it is used for measuring the primary and controlling the secondary mission. The processor used will be a Feather M0 module that involves an ARM Cortex M0 microcontroller known from Arduino Zero with an integrated radio module (LoRa) for communication purposes.
-The core of our primary mission will be an MPL temperature and pressure sensor, which will record the data every second to give us an accurate depiction of the altitude of the CanSat. This will be calculated using the hypsometric formula, more information in section 7.1: Test Campaign: Primary mission tests. This sensor suits our mission well because of its high level of accuracy. The core of our secondary mission will be the NW Air Pump which will be used to push air from a high altitude through a series of filters. This air pump after testing showed that the amount of air that it can pump is sufficient for finding small organisms and bacteria. Furthermore, the power converter that was initially used for powering the pump was not strong enough and it needed to be changed for a one that could supply more power. To power the NW Air Pump with 6V and 400 mA current a step-down converter (D24V10F6) will be used to change the battery voltage of 11.1 V, also a second step down converter (D24V22F5) will be used to power the main controller with 5V and 700 mA.  The converter powering the pump was changed after testing due to the current limit being reached (500mA) and the motor not reaching its highest power possible. To power the CanSat three Li-Ion 750 mAh batteries are used and the voltage is stepped down for the other components. To turn on the pump a relay is used for safety in case of a short in the motor the motherboard will not be damaged. It is particularly important for our secondary mission that the CanSat will be found due to the physical sample that we need to analyze in a lab; therefore, a GPS module is used to determine the coordinates of the CanSat, and these will be sent to the ground station. To help with finding the CanSat after landing an 80dB buzzer is used, if the CanSat is hard to find visibly it can be also found using sound.
+The electronics consist of two main systems, the 5V and the 6V. The power is taken from 3 lithium ion(3.7V 750mAh) batteries rigid in series to provide 12.6V when charged and 750mAh of capacity. There are 2 main converters, a 5V and a 6V. The 6V converter powers the air pump that pulls the air through the filters. The 5V converter powers the microcontroller, the buzzer, the led and the GPS, the sensor is powered through the microcontroller with an 3.3 V. The wiring is basic, the power needs to be wired to all components respectively. The wiring between the feather wing board and the components is a bit more complicated. 
+
 
 ![CanSat Mappedout](https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/cansatmappedout2.png)
 
