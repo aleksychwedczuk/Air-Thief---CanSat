@@ -36,11 +36,6 @@ The secondary mission is designed to investigate microorganisms, at a designated
  
 The main core of the satellite is designed using Fusion 360. We decided to collaborate with Cubic Inch to use their expertise and technologically advanced tools to print our core of the satellite. The company uses the Multi Jet Fusion technology provided by HP. The materials used by such a printer is the Polyamide PA12 which is a strong and durable material, therefore our satellite and its components will be protected when it falls to the ground after the fall.
 
-![Flatsat 1](https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/FLatSat1.png)
-
-![Flatsat 2](https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/FLatSat2.png)
-
-![Flatsat 3](https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/FLatSat3.png)
 ## 3D Models
 
 ## Bill of Materials
@@ -53,8 +48,13 @@ The following files are uploaded in the 3D folder:
 
 The electronics consist of two main systems, the 5V and the 6V. The power is taken from 3 lithium ion(3.7V 750mAh) batteries rigid in series to provide 12.6V when charged and 750mAh of capacity. There are 2 main converters, a 5V and a 6V. The 6V converter powers the air pump that pulls the air through the filters. The 5V converter powers the microcontroller, the buzzer, the led and the GPS, the sensor is powered through the microcontroller with an 3.3 V. The wiring is basic, the power needs to be wired to all components respectively. The wiring between the feather wing board and the components is a bit more complicated. 
 
-
 ![CanSat Mappedout](https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/cansatmappedout2.png)
+
+![Flatsat 1](https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/FLatSat1.png){:height="50%" width="50%"}
+
+![Flatsat 2](https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/FLatSat2.png){:height="50%" width="50%"}
+
+![Flatsat 3](https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/FLatSat3.png){:height="50%" width="50%"}
 
 # How to program the Air Thief
 
