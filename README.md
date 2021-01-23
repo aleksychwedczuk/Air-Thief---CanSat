@@ -50,12 +50,9 @@ The electronics consist of two main systems, the 5V and the 6V. The power is tak
 
 ![CanSat Mappedout](https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/cansatmappedout2.png)
 
-![Flatsat 1](https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/FLatSat1.png){:height="50%" width="50%"}
-
-![Flatsat 2](https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/FLatSat2.png){:height="50%" width="50%"}
-
-![Flatsat 3](https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/FLatSat3.png){:height="50%" width="50%"}
-
+![Flatsat 1](https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/FLatSat1.pngs=200)
+![Flatsat 2](https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/FLatSat2.png)
+![Flatsat 3](https://github.com/aleksychwedczuk/Air-Thief---CanSat/blob/main/FLatSat3.png)
 # How to program the Air Thief
 
 The primary onboard computing unit for our CanSat is an Adafruit M0 that supports Arduino. It is going to run all the programs necessary for the functioning of the CanSat and all onboard equipment and experiments. The flight plan for individual atmospheric Microbiome soundings can be fine-tuned, which is helpful. The data will be recorded to a MicroSD card, which will probably have such high storage capacity that it will be virtually infinite for our purposes (16 GB, around 30 zloty).
