@@ -71,10 +71,11 @@ The data recorded via the MicroSD card, and the outgoing transmissions sent out 
 
 # Ground support equipment
 
- 	Laptop running the backend and frontend for the communication with the satellite. The frontend handles the display of data on screen and the issuing of commands to the CanSat, and the backend communicates directly and writes to files, etc. The frontend is written in JS. The backend works in Python. [One of our programmers proposed an additional backend (a middle end if You will) that will kick in if some gstat OS crash occurs, to prevent any local data loss. This is just called a glorified log file, but still.]
- 	A YAGI omnidirectional antenna that will send and receive data from the CanSat. It is connected to the Laptop.
- 	A power supply for the laptop and the antenna. This is a backup, as there is most likely mains power in situ at the launch site.
- 	A port-a-nanolab with materials applicable for the final selected procedure [if needed, consult detailed procedure report for fully written-out action plan etc.]:
+Laptop running the backend and frontend for the communication with the satellite. The frontend handles the display of data on screen and the issuing of commands to the CanSat, and the backend communicates directly and writes to files, etc. The frontend is written in JS. The backend works in Python. One of our programmers proposed an additional backend (a middle end if You will) that will kick in if some gstat OS crash occurs, to prevent any local data loss. This is just called a glorified log file, but still.
+
+A YAGI omnidirectional antenna that will send and receive data from the CanSat. It is connected to the Laptop.
+A power supply for the laptop and the antenna. This is a backup, as there is most likely mains power in situ at the launch site.
+A port-a-nanolab with materials applicable for the final selected procedure if needed.
 1.	Lab safety equipment (coat, glasses, gloves)
 2.	Flow cytometer in Adamed’s Laboratory
 3.	Cytometry prep kit
