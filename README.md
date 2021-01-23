@@ -18,6 +18,7 @@ One of our main objectives is to make project an open-source - this means we wa
 * [License](#license)
 
 # Introduction
+
 The Air Thief team consists of 5 members from Akademeia High School. We formed a team as we believed the CanSat competition is a one-time experience that will allow us to polish our skills as well as gain newfound skills from the process. We came up with the idea of creating the Air Thief - a satellite that would be able to collect air from an altitude of 2km, which can be later sampled for microbes. Throughout the competition, we have brainstormed how we will achieve this, as well as have gained partners such as Adamed, Cloudferro, JLCPCB, CubicInch and Thorium Space Technology, who see great potential in our work and are willing to support us with their resources.
 
 The medium through which we want to accomplish our mission is the CanSat competition - a competition organized by the European Space Agency with the goal of building a real satellite within the volume of a soft drink can. This competition takes place every year and is held to very high standards as initially, over 80 teams per country participate in the challenge.
@@ -26,9 +27,10 @@ There are many opportunities for patenting ideas, meaning this is definitely an 
 
 # CanSat description
 
-The general mission of any cansat is to measure the temperature and pressure at a given altitude. We will use an Adafruit temperature and pressure sensor and connected to a Raspberry PI Zero micro-controller, so that it can be measured. From that point onwards, the data will be transmitted via a signal to a ground station. 
+The project consists of a primary and a secondary mission. The primary mission consists of measuring the temperature and pressure throughout the whole flight of the satellite. The CanSat will therefore include an additional sensor specified to take those measurements. The data obtained should be sent to the ground station every second to allow the team to analyze the information given and plot graphs that should facilitate the execution and organization of the secondary mission. It is important to notice that measuring both temperature and pressure, will allow us to identify the position of our satellite, as these two factors can be modelled to provide the height at which the system is placed at some point in the given time.
 
-The core of our secondary mission - the mission dedicated only to the Air Thief - will be the NW Air Pump which will be used to push air from a high altitude through a filter. We will use 3 lithium-ion 750 mAh battery and the voltage will be stepped down for the other components. To turn on the pump, a relay will be used for safety in case of a short in the motor.
+The secondary mission is designed to investigate microorganisms, at a designated height above sea level. To pursue this experiment, the satellite will be equipped with four filters, enclosed in two sterile chambers, allowing the separation of the desired sample from any other contaminants. The air will be pushed through the sterile chamber described above with the use of a pump to increase the possibility of collecting the samples only at the desired height. The aim of the secondary mission is also to measure the humidity at a certain height above sea level. This will be done using the same sensor as the one used in the primary mission. It is crucial to know the level of humidity to adjust for the filter air flow capacity.
+
 
 # Hardware Design
  
@@ -68,14 +70,13 @@ The program has 3 main modes, controlled based on the current altitude measured 
 The data recorded via the MicroSD card, and the outgoing transmissions sent out via radio will have a specific format that will minimize their size, enabling higher efficiency. [This means that the timestamps used for instance are going to be epoch time that can be later converted into human-readable time values, not in situ in the POCU but in the gstat after receiving it.] The ground station program will be coded in JS for the frontend, and in Python3 for the backend.
 
 # Ground support equipment
-Changes in CDR: The POCU handles only basic data processing and categorizing. Additionally, there is more data sent out via Radio than is saved to the SD card (since ICAR pings and other health information are only saved on the ground station). The POCU handles only basic data processing, handling & categorizing. Additionally, there is more data sent out via Radio than is saved to the SD card (since the ICAR pings and other health information are only saved on the ground station).
-The ground station is composed of these elements:
+
  	Laptop running the backend and frontend for the communication with the satellite. The frontend handles the display of data on screen and the issuing of commands to the CanSat, and the backend communicates directly and writes to files, etc. The frontend is written in JS. The backend works in Python. [One of our programmers proposed an additional backend (a middle end if You will) that will kick in if some gstat OS crash occurs, to prevent any local data loss. This is just called a glorified log file, but still.]
  	A YAGI omnidirectional antenna that will send and receive data from the CanSat. It is connected to the Laptop.
  	A power supply for the laptop and the antenna. This is a backup, as there is most likely mains power in situ at the launch site.
  	A port-a-nanolab with materials applicable for the final selected procedure [if needed, consult detailed procedure report for fully written-out action plan etc.]:
 1.	Lab safety equipment (coat, glasses, gloves)
-2.	Flow cytometer in Adamed’s Laboratory (letter of intent signed and link available below)
+2.	Flow cytometer in Adamed’s Laboratory
 3.	Cytometry prep kit
 4.	Professional glove box
 5.	Self-adhesive foil
