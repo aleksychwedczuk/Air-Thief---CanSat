@@ -107,4 +107,5 @@ A port-a-nanolab with materials applicable for the final selected procedure if n
 11.	Sars-CoV-2 Quick-Antibody detection kit for testing teammates (pandemic control related if needed).
 12.	Microorganisms instant detection kit (obsolete).
 
-
+# License
+Our work is licensed under the ACADEMIC PUBLIC LICENSE that allows noncommercial use specifically restricted to an education environment. To use this software for commercial purposes a commercial use license must be purchased. This means You can safely launch a CanSat with this software and can modify it to work for Your specific mission, but cannot sell the software or use it to make money in other ways.
