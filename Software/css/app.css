@@ -13,6 +13,85 @@ body {
   transition: 0.4s;
 }
 
+.loverlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+
+  background: white;
+
+  z-index: 333;
+}
+.loverlay .lovercont {
+  width: 527px;
+  height: 307px;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+}
+.loverlay .lovercont img {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: 63px;
+  left: 105px;
+}
+.loverlay .lovercont .ctname {
+  font-size: 12px;
+  font-weight: 500;
+  position: absolute;
+  top: 82px;
+  left: 205px;
+
+  margin: 0; padding: 0;
+
+  color: var(--accent);
+}
+.loverlay .lovercont .ctit {
+  font-weight: 700;
+  position: absolute;
+  top: 98px;
+  left: 205px;
+  font-size: 20px;
+
+  margin: 0; padding: 0;
+
+  color: var(--accent);
+}
+.loverlay .lovercont .ctogglebutt {
+  width: 316px;
+  height: 50px;
+
+  background-image: linear-gradient(to right, #d6214c, #b82e74);
+
+  border-radius: 10px;
+
+  position: absolute;
+  left: 105px;
+  top: 183px;
+
+  transition: 0.2s;
+}
+.loverlay .lovercont .ctogglebutt:hover {
+  background-image: linear-gradient(to right, #d6214c, #d6214c);
+  border-radius: 20px;
+}
+.loverlay .lovercont .ctogglebutt p {
+  top: 12px;
+  left: 123px;
+
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+
+  position: absolute;
+
+  margin: 0; padding: 0;
+}
+
 .appinfo {
   z-index: 100;
 
@@ -136,6 +215,10 @@ body {
   display: block;
   opacity: 1;
   filter: blur(0px);
+}
+
+.invis {
+  display: none;
 }
 
 #home .calt {

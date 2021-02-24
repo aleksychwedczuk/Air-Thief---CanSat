@@ -8,6 +8,8 @@ from flask import Flask, jsonify, request, after_this_request
 from datetime import datetime
 import time
 
+import random
+
 #Instantiate app
 app = Flask(__name__)
 
@@ -18,10 +20,10 @@ PORT = 'COM11'
 CAN_SINKRATE_MAX = 9 #maximum fall speed
 CAN_SINKRATE_MIN = 2 #minimum fall speed
 
-LAT = -999
-LON = -999
+LAT = 521983
+LON = 210843
 
-ALT = 0
+ALT = 2500
 
 LABELS = ["0:00.00" for i in range(20)]
 SERIES = [0 for i in range(20)]
@@ -29,10 +31,18 @@ SERIES = [0 for i in range(20)]
 ITER = 0
 cur = ""
 
+SAMPLE = 0
+
+ERRORBURN = 0
+
 @app.route('/telemetry', methods=['GET'])
 def serveTelemetry():
+    global ITER
+    global ERRORBURN
+    ITER += 1
     try:
-        ser = serial.Serial(PORT, 9600, timeout=1000000)
+        #ser = serial.Serial(PORT, 9600, timeout=1000000)
+        pass
     except:
         print("WAITING!!! :D")
     
@@ -44,74 +54,77 @@ def serveTelemetry():
     #AC1320317EY+521983
     
     try:
-        try:
-            cur = ser.readline().decode().strip()
-        except:
-            return {"ERROR": "TRUE"}
+        if (ITER % 5 == 0):
+            pass
+        else:
+            return "ERR"
 
         print(cur)
 
         now = datetime.now()
         current_time = now.strftime("%H:%M.%S")
-        
-        error = {"A": "NULErr",
-                 "B": "SDCErr",
-                 "C": "RFCErr",
-                 "D": "ALTErr",
-                 "E": "GPSErr",
-                 "F": "TELErr",
-                 "G": "RESErr",
-                 "H": "FFAErr"}[cur[0]]
 
-        errornice = {"A": "NO ERROR",
-                     "B": "SD Card Error",
-                     "C": "LoRa Error",
-                     "D": "Altimeter Error",
+
+        if (ERRORBURN > 0):
+            ERRORBURN -= 1
+            error = "SDCErr"
+        else:
+            if (random.randint(0, 10) == 0):
+                error = "SDCErr"
+                ERRORBURN = random.randint(3, 5)
+            else:
+                error = "NULErr"
+        errornice = {"NULErr": "NO ERROR",
+                     "SDCErr": "SD Card Error",
+                     "RFCErr": "LoRa Error",
+                     "ALTErr": "Altimeter Error",
+                     "GPSErr": "GPS Error",
+                     "F": "Telemetry Error",
+                     "G": "In-Flight RESET",
+                     "H": "No-Chute Error"}[error]
+        
+        global ALT
+
+        if (ALT > 500):
+            mode = 'SMPL'
+        else:
+            mode = 'ACTI'
+        
+        modenice = {"STBY": "Standby",
+                     "ACTI": "Active",
+                     "SMPL": "Sample",
+                     "ALTErr": "Altimeter Error",
                      "E": "GPS Error",
                      "F": "Telemetry Error",
                      "G": "In-Flight RESET",
-                     "H": "No-Chute Error"}[cur[0]]
-
-        mode = { "A": "STBY",
-                 "B": "ACTI",
-                 "C": "SMPL"}[cur[1]]
-
-        modenice = { "A": "Standby",
-                     "B": "Active",
-                     "C": "Sample"}[cur[1]]
+                     "H": "No-Chute Error"}[mode]
 
         
+        
 
-        if (cur[8].isdigit() or cur[8] in "+-"):
-            spd = cur[8]
-        else:
-            spd = str(ord("A") - 55)
+        spd = random.randint(0, 5)
 
-        if (cur[9].isdigit()):
-            head = str(int(cur[9]) * 10)
-        else:
-            head = str((ord("A") - 55) * 10)
+        head = random.randint(0, 36) * 10
 
-        if (cur[10] == "Y"):
-            global LAT
-            LAT = int(cur[11:19])
-        else:
-            global LON
-            LON = int(cur[11:19])
+        global LAT
+        global LON
 
-        global ALT
-        try:
-            deltalt = int(cur[4:8]) - ALT
-        except:
-            deltalt = 0
+        LAT += random.randint(-2, 3)
+        LON += random.randint(-2, 4)
 
         global LABELS
         global SERIES
 
-        try:
-            ALT = int(cur[4:8]) #regen alt
-        except:
-            ALT = 0
+        
+
+        global SAMPLE
+
+        if (ALT > 500):
+            SAMPLE += random.randint(0, 1)
+
+        deltalt = random.randint(5, 8)
+
+        ALT = ALT - deltalt
 
 
         LABELS = [current_time] + LABELS[:-1]
@@ -119,33 +132,34 @@ def serveTelemetry():
         
         jsonResp = {'ERROR'    : error,
                     'MODE'     : mode,
-                    'SAMPLING' : cur[2:4],
-                    'ALT'      : cur[4:8],
+                    'SAMPLING' : SAMPLE,
+                    'ALT'      : ALT,
                     'VELO'     : spd,
                     'DIR'      : head,
                     'LAT'      : LAT,
                     'LON'      : LON,
-                    'RAW'      : cur[:-3],
+                    'RAW'      : 'AC1320317EY+521983',
                     'FALL'     : deltalt,
                     'MODENICE' : modenice,
                     'DATA'     : {
                         'labels' : LABELS,
                         'series' : [SERIES]
                     },
-                    'RSSI'     : cur[19:22],
+                    'RSSI'     : -1 * random.randint(20, 80),
                     'ERRORNICE': errornice}
 
         print(jsonResp)
-        ser.close()
+        #ser.close()
         return jsonify(jsonResp)
         
-    except: #############
+    except ZeroDivisionError: #############
         print("NO ADDITIONAL DATA\n")
-        ser.close()
+        #ser.close()
         return "ERR"
         #ser.close()
         #time.sleep(3)
         #ser = serial.Serial(PORT, 9600, timeout=1000000)
+    
         
         
 

@@ -19,6 +19,15 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   </head>
   <body>
+    <div class="loverlay" id="lol">
+      <div class="lovercont">
+        <img src="img/logos/AirOS.svg">
+        <p class="ctname">AIR THIEF</p>
+        <p class="ctit">CanSat Flight Software</p>
+        <div class="ctogglebutt" id="closelover"><p>Launch</p></div>
+      </div>
+    </div>
+
     <div class="appinfo">
       <img src="img/logos/AirOS.svg">
       <h1 class="appname">CanSat Flight Software</h1>
@@ -330,7 +339,7 @@
 
       <div class="statcont" id="v6">
         <div class="statvalc" style="background: var(--accent)">
-          <p class="statval" id="antdatanum">NOMINAL</p>
+          <p class="statval" id="masterrnum">NOMINAL</p>
         </div>
 
         <p class="stitle">Master Warning</p>
@@ -341,5 +350,9 @@
     </div>
 
     <script src="js/app.js"></script>
+
+    <audio id="music" loop="true">
+      <source type="audio/mp3">
+    </audio>
   </body>
 </html>

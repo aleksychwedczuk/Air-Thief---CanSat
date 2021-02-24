@@ -18,6 +18,15 @@ $('.element').bind('click', function() {
   document.getElementById(jump).classList.add('curr');
 });
 
+$("#closelover").click(function () {
+	document.getElementById('lol').classList.add('invis');
+
+	document.getElementById("music").src = "MicrobioWarningLoop.wav";
+	document.getElementById("music").load();
+	document.getElementById("music").play();
+	document.getElementById("music").muted = true;
+});
+
 function getTelemetry() {
   const url = 'http://localhost:4170/telemetry'
   fetch(url)
@@ -68,8 +77,12 @@ function getTelemetry() {
 
 		if (json.ERROR == "NULErr") {
 			setDefinite('vhealth', "OK");
+			setDefinite('masterr', "NOMINAL");
+			document.getElementById("music").muted = true;
 		} else {
 			setDefinite('vhealth', "ERROR");
+			setDefinite('masterr', json.ERROR);
+			document.getElementById("music").muted = false;
 		}
 
 
@@ -78,6 +91,22 @@ function getTelemetry() {
 		setDefinite('antdata', json.RAW);
 
 		setDefinite('mode', json.MODE);
+
+		setDefinite('sanity', insane);
+
+		if (json.ERROR == "NULErr") {
+			if (json.MODE == "STBY") {
+				setDefinite('statcur', 'Standing by on Ground.');
+			}
+			if (json.MODE == "ACTI") {
+				setDefinite('statcur', 'Vehicle is in Flight.');
+			}
+			if (json.MODE == "SMPL") {
+				setDefinite('statcur', 'Collecting airborne Microbes...');
+			}
+		} else {
+			setDefinite('statcur', 'Experiencing ' + json.ERRORNICE + '.');
+		}
 
 		mapFlyTo(json.LAT / 10000, json.LON / 10000);
 
@@ -161,7 +190,7 @@ function mapFlyTo(lat, lon) {
 	  center: [
 	    lon, lat
 	  ],
-		zoom: 18,
+		zoom: 15,
 	  essential: false //is nonessenial -lag
 	});
 }
